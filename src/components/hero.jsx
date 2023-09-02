@@ -16,12 +16,12 @@ const heorBanner = ()=>{
 
 
 
-                <div style={{transform:`translateX(${slide*1680}px)` , transitionDuration:"0.3s"}} className=" w-[1200px]  bg-slate-500">
+                <div style={{transform:`translateX(${slide*1700}px)` , transitionDuration:"0.3s"}} className=" w-[1200px]  bg-slate-500">
                     {/* <h1 className=" text-9xl">page 2</h1> */}
                     <img className="w-full" src="https://1.bp.blogspot.com/-owDZBtWLm_M/Xe9nYuOlDzI/AAAAAAAAjBA/ojFAQ0Bq77Q-TWq7bkJdxLYw-4qzDdZfACLcBGAsYHQ/s2560/laptop_2-wallpaper-2560x1440.jpg" alt="" />
               </div>
 
-                <div style={{transform:`translateX(${slide ==-2 ? -3361:-2000}px)` , transitionDuration:"0.3s"}} className=" w-[1200px]  bg-slate-500">
+                <div style={{transform:`translateX(${slide*1700}px)` , transitionDuration:"0.3s"}} className=" w-[1200px]  bg-slate-500">
                     {/* <h1 className=" text-9xl">page 3</h1> */}
                     <img className="w-full" src="https://www.pixelstalk.net/wp-content/uploads/2016/05/Laptop-Wallpaers-HD.jpg" alt="" />
                     

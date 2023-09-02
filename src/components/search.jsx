@@ -12,7 +12,7 @@ const search = ()=>{
   
     const handelClick=(user)=>{
         dispatch(setShow(false))
-        dispatch(storeCondition({brand:user.brand,category:user.category}))
+        dispatch(storeCondition({id:user.id,brand:user.brand,category:user.category}))
         dispatch(setSearchRating(true))
         dispatch(setSerchItemValue0(""))
     }

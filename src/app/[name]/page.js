@@ -3,12 +3,12 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Allfileter from "@/components/filterCondition/allFilter";
 import Rating from '@/components/starRatin'
-
+import ProductFIlterPage from '@/components/productFilter'
 const productD = ({ params }) => {
   const dispach = useDispatch();
   const productData = useSelector((state) => state.cart);
   const searchItems = useSelector((state) => state.searchItem);
-
+  
   // console.log("serachItems",searchItems.searchCondition)
   // console.log("searchItems.searchPrice", searchItems.searchPrice + 1);
   // console.log("chekcFilter", searchItems.searchCondition.brand );
@@ -21,8 +21,11 @@ const productD = ({ params }) => {
           </div>
         </div>
       </div>
-      {searchItems.searchRating ? (
+      <ProductFIlterPage  param={params.name}/>
+
+      {/* {searchItems.searchRating ? (
         <div>
+
           {productData.products &&
             productData.products
               .filter((element) => `${element.id}` === params.name)
@@ -96,14 +99,14 @@ const productD = ({ params }) => {
                                   <h2>M.R.P ${item.price}</h2>
 
                                   <h5 className=" line-through text-red-500">
-                                    {" "}
+                                    
                                     $
                                     {(
                                       (item.price / 100) *
                                       item.discountPercentage
                                     ).toFixed(2)}
                                   </h5>
-                                  <h5>{item.discountPercentage}%</h5>
+                                  <h5>{item.discountPercentage}% OFF</h5>
                                 </div>
                               </div>
                             </div>
@@ -121,9 +124,9 @@ const productD = ({ params }) => {
             productData.products
               .filter(
                 (element) =>
-                  (element.rating > +searchItems.searchPrice &&
+                  (element.rating > +searchItems.conditionFilter &&
                     element.brand === searchItems.searchCondition.brand||
-                  element.brand === searchItems.searchPrice)
+                  element.brand === searchItems.conditionFilter)
               )
               .map((item) => {
                 // console.log("check",check)
@@ -170,7 +173,7 @@ const productD = ({ params }) => {
                 );
               })}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

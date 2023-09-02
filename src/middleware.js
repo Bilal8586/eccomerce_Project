@@ -7,14 +7,20 @@ export function middleware(request) {
     const token = request.cookies.get('token')?.value || '' 
     const isgooletoken = request.cookies.get('next-auth.session-token')?.value || ''
  
-      if( token || isgooletoken  && isPublic){
+      if( isgooletoken  && isPublic){
         return NextResponse.redirect(new URL('/',request.nextUrl))
+      }else if(token && isPublic){
+        return NextResponse.redirect(new URL('/',request.nextUrl))
+
       }
     
       if(!isgooletoken && !token && isLogin){
         return NextResponse.redirect(new URL('/login',request.nextUrl))
 
       }
+      // if(path === '/api/products'){
+      //   return NextResponse.redirect(new URL('/',request.nextUrl))
+      // }
 
 
       
@@ -26,6 +32,6 @@ export const config = {
     '/login',
     '/signup',
     '/cart',
-    
+   
   ]
 }

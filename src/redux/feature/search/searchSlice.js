@@ -3,8 +3,9 @@ const initialState ={
     Value :"",
     show:true,
     searchCondition:'',
-    searchPrice:0,
-    searchRating:true
+    conditionFilter:0,
+    searchRating:true,
+    searchType:'id'
    
 }
 
@@ -28,18 +29,21 @@ const searchSlice = createSlice({
             state.searchCondition = action.payload
         }
         ,
-        priceCodition:(state,action)=>{
-            state.searchPrice= action.payload
+        conditionFilters:(state,action)=>{
+            state.conditionFilter= action.payload
         },
         setSearchRating:(state,action)=>{
             state.searchRating= action.payload 
         },
         setSerchItemValue0:(state,action)=>{
             state.Value=action.payload
+        },
+        setSerachType:(state,action)=>{
+            state.searchType=action.payload
         }
        
     }
 })
 
 export default searchSlice.reducer
-export const {Add,setShow,storeCondition,priceCodition,setSearchRating,setSerchItemValue0} = searchSlice.actions
+export const {Add,setShow,storeCondition,conditionFilters,setSearchRating,setSerchItemValue0,setSerachType} = searchSlice.actions

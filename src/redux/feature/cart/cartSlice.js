@@ -7,7 +7,8 @@ const initialState={
     items:[],
     status:'idle',
     like:0,
-    userId:''
+    userId:'',
+    userStatus:''
 }
 
 export const fetchItemsAsyn = createAsyncThunk(
@@ -26,7 +27,9 @@ export const addItemsAsyn= createAsyncThunk(
         const id=Math.random()+1
         const {userId}=items
         const {title,price,images}=items.items
-        const response = await addItems({id,title,price,images,Quntity:1,userId})
+        const {productId} = items
+        console.log('productId',productId,items)
+        const response = await addItems({id,title,price,images,Quntity:1,userId,productId})
         return response.data
     }
 )
@@ -58,7 +61,11 @@ const cartSlice =createSlice({
             // console.log('likesffgf',state.like)
         },
         addUserId:(state,action)=>{
+            // console.log('action.playlod',action.payload)
             state.userId=action.payload
+        },
+        addUserStatus:(state,action)=>{
+            state.userStatus=action.payload
         }
     },
     extraReducers:(builder)=>{
@@ -102,4 +109,4 @@ const cartSlice =createSlice({
 })
 
 export default cartSlice.reducer
-export const {increment,addUserId} = cartSlice.actions
+export const {increment,addUserId,addUserStatus} = cartSlice.actions

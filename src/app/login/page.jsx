@@ -34,7 +34,11 @@ const loginPage = () => {
          <div className="w-[600px] h-[500px] bg-slate-200 shadow-2xl gap-2 flex flex-col rounded-3xl justify-center items-center">
          <button
           className="w-[400px] flex items-center justify-center gap-3  h-[55px] shadow-2xl border-[1px] text-[26px] border-white bg-white hover:bg-white rounded-3xl"
-          onClick={()=>signIn('google')}
+          onClick={()=>{
+            signIn('google')
+            toast.success('Login successfull')
+            route.push('/')
+          }}
         >
          <span><FcGoogle /> </span>  Login with Google
         </button>

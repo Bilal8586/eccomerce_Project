@@ -11,7 +11,7 @@ const productDetail =({params})=>{
   const dispatch = useDispatch()
 
     const [count,setCount]=useState(0)
-//  console.log(params.productName+1)
+ console.log(params.productName)
     return(
        <div>
         
@@ -19,9 +19,9 @@ const productDetail =({params})=>{
             productData.products &&
             productData.products.filter((element)=> element.id == +params.productName)
             .map((item)=>{
-                const check = data.items.some((el)=>{
-                    return el.id === item.id
-                  })
+                // const check = data.items.some((el)=>{
+                //     return el.id === item.id
+                //   })
                 return (
                     <section>
                     <div className="flex justify-around pt-[100px] bg-slate-200" key={item.id}>
@@ -51,7 +51,7 @@ const productDetail =({params})=>{
                                 </div>
                                  <div>
                                     <div>
-                                    <h2>{item.discountPercentage}%</h2>
+                                    <h2 className="text-red-600 line-through">{item.discountPercentage}% OFF</h2>
                                      <h2>${item.price}</h2>
                                     
                                      </div>
@@ -61,10 +61,9 @@ const productDetail =({params})=>{
                                     <button
                                     onClick={()=> dispatch(addItemsAsyn(item))}
                                       className=" w-[160px] hover:border-orange-600  hover:border-[1px] mt-1 bg-orange-600 rounded-3xl hover:bg-white hover:text-orange-600 p-2 text-white "
-                                    > { 
-                       
-                                        !check ? "Add to Cart":"Product Added"
-                                      }</button>
+                                    >  
+                                    Add to cart
+                                      </button>
                                  </div>
                             </div>
                               

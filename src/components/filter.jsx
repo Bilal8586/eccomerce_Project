@@ -1,4 +1,4 @@
-import { priceCodition, setSearchRating } from "@/redux/feature/search/searchSlice"
+import { conditionFilters, setSearchRating, setSerachType } from "@/redux/feature/search/searchSlice"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 
@@ -7,8 +7,9 @@ import { useDispatch } from "react-redux"
 const filterItem =(props)=>{
     const dispatch = useDispatch()
     const handelChange=(e)=>{
-        dispatch(priceCodition(e.target.value))
+        dispatch(conditionFilters(e.target.value))
         dispatch(setSearchRating(false))
+        dispatch(setSerachType(props.serchFilter))
     }
     return(
         <div>

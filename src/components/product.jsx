@@ -16,33 +16,7 @@ const Product = () => {
   // const [loginCheck, setCheck] = useState('')
   const state = useSelector((state) => state.cart);
   const data = useSelector((state) => state.item);
-  // const { status, data: session } = useSession();
 
-  // const CheckUser = async () => {
-  //   if (status == 'unauthenticated') {
-  //     try {
-  //       const response = await axios.get('/api/me')
-  //       setCheck(response.data)
-  //     } catch (error) {
-  //       console.log('getUser Data filed', error)
-  //     }
-  //   }
-
-  //   if (status == 'authenticated') {
-  //     console.log('adduserId product page')
-  //     return dispatch(addUserId(session?.user?.email))
-  //   } else if (loginCheck.message == 'User found') {
-  //     console.log('adduserId product page')
-  
-  //     return dispatch(addUserId(loginCheck.data.email))
-  //   }
-  // }
-
-
-  // useEffect(() => {
-  //   // CheckUser()
-  //   dispatch(fetchDataAsy());
-  // }, []);
 
   return (
     <div className=" py-20 text-black bg-slate-100">
@@ -54,10 +28,10 @@ const Product = () => {
 
           <div className=" grid grid-cols-3 gap-4 w-[1200px] mx-auto   ">
             {state.products.length > 0 &&
-              state.products.slice(page * 6 - 6, 6 * page).map((item) => {
-                // const check = data.items.some((el) => {
-                //   return el?.id === item?.id;
-                // });
+              state.products?.slice(page * 6 - 6, 6 * page).map((item) => {
+                const check = data.items.some((el) => {
+                  return el?.userId === item?.id;
+                });
 
                 return (
                   <div
@@ -92,11 +66,11 @@ const Product = () => {
                       <div className="text-center">
                         <button
                           onClick={() => {
-                            if (data.userId.length > 1) {
+                            if (data.userId !== '') {
                               const userId = data.userId
-                              return dispatch(addItemsAsyn({ items: item, userId }));
+                              return dispatch(addItemsAsyn({items:item,userId,productId:item.id}));
                             } else if (data.userId == '') {
-                              alert('Login to add Items')
+                              alert('please login to add items')
                             }
                           }}
                           className=" w-[160px] hover:border-orange-600  hover:border-[1px] mt-1 bg-orange-600 rounded-3xl hover:bg-white hover:text-orange-600 p-2 text-white "
@@ -119,13 +93,13 @@ const Product = () => {
             </button>
 
             {state.products.length > 0 &&
-              state.products.filter((e, i) => i < state.products.length / 6).map((e, i) => {
+              state.products.filter((e, i) => i < state.products.length / 6)?.map((e, i) => {
 
 
                 return (
-                  <div>
+                  <div key={i}> 
                     {(
-                      <div className="flex " key={i}>
+                      <div className="flex " >
                         <h3
                           onClick={() => setpage(i + 1)}
                           className={` ${page === i + 1 ? "bg-white" : " bg-slate-500  "

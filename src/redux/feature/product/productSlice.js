@@ -11,7 +11,6 @@ const initialState ={
     'fetchDataAsy',
     async()=>{
         const response = await fetchProdut()
-         console.log('data.response',response.data)
         return response.data
     }
 )

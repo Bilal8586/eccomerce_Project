@@ -17,27 +17,29 @@ import { toast } from "react-hot-toast";
 const Navbar = () => {
   const [btna, setBtna] = useState(0);
   const dispatch = useDispatch();
-  const [logindata, setLoginData] = useState("");
-  const [userStatus,setuserStatus]=useState('')
+  // const [logindata, setLoginData] = useState("");
   const data = useSelector((state) => state.item);
-  const { status, data: session } = useSession();
+  // const { status, data: session } = useSession();
 
   const router = useRouter();
-console.log(logindata);
+
   // console.log('google login user',session?.user?.email)
   // login info
-  const getLoginuserData = async () => {
+  // const getLoginuserData = async () => {
     // if (status == "authenticated") {
     //   return false;
     // }
-    try {
-      const response = await axios.get("/api/me");
-      setLoginData(response.data.message);
-      setuserStatus(status)
-    } catch (error) {
-      console.log("getUser Data filed", error);
-    }
-  };
+    // if(status !== 'authenticated'){
+    //   try {
+    //     const response = await axios.get("/api/me");
+    //     setLoginData(response.data.message);
+        
+    //   } catch (error) {
+    //     console.log("getUser Data filed", error);
+    //   }
+    // }
+    
+  // };
 
   //  logout with emai and password user
 
@@ -51,13 +53,14 @@ console.log(logindata);
   };
 
   const hadelLogout = () => {
-    if (logindata == "User found") {
+    if (data.userStatus == "User found") {
       onLogout();
       toast.success("Logout Successful");
     }
     dispatch(addUserId(''))
-    if (status === "authenticated") {
+    if (data.userStatus === "authenticated") {
       signOut();
+      router.push("/login");
       toast.success("Logout Successful");
     }
   };
@@ -66,10 +69,10 @@ console.log(logindata);
     dispatch(setShow(true));
     dispatch(Add(e.target.value));
   };
-  useEffect(() => {
-    dispatch(fetchItemsAsyn());
-    getLoginuserData();
-  }, [logindata,userStatus]);
+  // useEffect(() => {
+  //   // dispatch(fetchItemsAsyn());
+  //   // getLoginuserData();
+  // }, []);
 
   return (
     <div className=" sticky top-0 z-10  border-b-2 border-black  bg-white">
@@ -120,7 +123,8 @@ console.log(logindata);
             </li>
           </ul>
           <div className=" ml-4">
-          {status === "authenticated" || logindata == "User found" ? (
+
+          {data.userId !== "" ? (
             <button
               onClick={hadelLogout}
               onMouseEnter={() => setBtna(27)}
