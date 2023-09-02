@@ -1,4 +1,5 @@
-const { useSelector, useDispatch } = require("react-redux");
+"use client"
+import { useDispatch, useSelector } from "react-redux";
 import {
   setSearchRating,
   setShow,
@@ -11,7 +12,7 @@ const search = () => {
   const items = useSelector((state) => state.searchItem);
   const show = useSelector((state) => state.searchItem.show);
   const productData = useSelector((state) => state.cart);
-
+    const dispatch = useDispatch()
   const handelClick = (user) => {
     dispatch(setShow(false));
     dispatch(

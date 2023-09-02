@@ -1,3 +1,4 @@
+"use client"
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import Rating from "@/components/starRatin";
