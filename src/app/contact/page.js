@@ -15,7 +15,7 @@ const contact = () => {
         <label className=" text-3xl">Email</label>
         <input className=" font-medium  border-black  w-[400px] rounded-3xl
                             p-4 outline-0 focus-within:outline-blue-400"/>
-        <label className=" text-3xl">Massage</label>
+        <label className=" text-3xl">Message</label>
         <input className=" font-medium  border-black h-[150px]  w-[400px] rounded-3xl
                             p-4 outline-0 focus-within:outline-blue-400" type="textarea" />
         <input className=" shadow-lg w-[195px] h-[46px] mt-12 rounded-3xl  border-[1px] border-gray-400 hover:bg-slate-100 cursor-pointer"  type="submit" />

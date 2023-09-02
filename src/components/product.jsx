@@ -1,22 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataAsy } from "../redux/feature/product/productSlice";
-import { addItemsAsyn, addUserId } from "../redux/feature/cart/cartSlice";
-import axios from "axios";
+import { addItemsAsyn } from "../redux/feature/cart/cartSlice";
 import ProductCetegore from "./productcategore";
 import Rating from "./starRatin";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react"
 
 const Product = () => {
   const dispatch = useDispatch();
   const [page, setpage] = useState(1);
-  // const [loginCheck, setCheck] = useState('')
   const state = useSelector((state) => state.cart);
   const data = useSelector((state) => state.item);
-
 
   return (
     <div className=" py-20 text-black bg-slate-100">
@@ -29,10 +23,6 @@ const Product = () => {
           <div className=" grid grid-cols-3 gap-4 w-[1200px] mx-auto   ">
             {state.products.length > 0 &&
               state.products?.slice(page * 6 - 6, 6 * page).map((item) => {
-                const check = data.items.some((el) => {
-                  return el?.userId === item?.id;
-                });
-
                 return (
                   <div
                     key={item.id}
@@ -50,8 +40,12 @@ const Product = () => {
                         <div>
                           <div className="flex items-center gap-4 pl-6 pt-2 ">
                             <h3 className="text-[15px]">{item.title}</h3>
-                            <h3 className="flex items-center gap-1">{item.rating} <span>< Rating rating={item.rating} /></span></h3>
-
+                            <h3 className="flex items-center gap-1">
+                              {item.rating}{" "}
+                              <span>
+                                <Rating rating={item.rating} />
+                              </span>
+                            </h3>
                           </div>
                           <div>
                             <div className="flex gap-10 items-center pl-10 pt-3 ">
@@ -66,16 +60,21 @@ const Product = () => {
                       <div className="text-center">
                         <button
                           onClick={() => {
-                            if (data.userId !== '') {
-                              const userId = data.userId
-                              return dispatch(addItemsAsyn({items:item,userId,productId:item.id}));
-                            } else if (data.userId == '') {
-                              alert('please login to add items')
+                            if (data.userId !== "") {
+                              const userId = data.userId;
+                              return dispatch(
+                                addItemsAsyn({
+                                  items: item,
+                                  userId,
+                                  productId: item.id,
+                                })
+                              );
+                            } else if (data.userId == "") {
+                              alert("please login to add items");
                             }
                           }}
                           className=" w-[160px] hover:border-orange-600  hover:border-[1px] mt-1 bg-orange-600 rounded-3xl hover:bg-white hover:text-orange-600 p-2 text-white "
                         >
-                          {/* {!check ? "Add to Cart" : "Product Added"} */}
                           Add to Cart
                         </button>
                       </div>
@@ -93,25 +92,26 @@ const Product = () => {
             </button>
 
             {state.products.length > 0 &&
-              state.products.filter((e, i) => i < state.products.length / 6)?.map((e, i) => {
-
-
-                return (
-                  <div key={i}> 
-                    {(
-                      <div className="flex " >
-                        <h3
-                          onClick={() => setpage(i + 1)}
-                          className={` ${page === i + 1 ? "bg-white" : " bg-slate-500  "
+              state.products
+                .filter((e, i) => i < state.products.length / 6)
+                ?.map((e, i) => {
+                  return (
+                    <div key={i}>
+                      {
+                        <div className="flex ">
+                          <h3
+                            onClick={() => setpage(i + 1)}
+                            className={` ${
+                              page === i + 1 ? "bg-white" : " bg-slate-500  "
                             } cursor-pointer w-[40px] border-2`}
-                        >
-                          {i + 1}
-                        </h3>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                          >
+                            {i + 1}
+                          </h3>
+                        </div>
+                      }
+                    </div>
+                  );
+                })}
             <button
               onClick={() =>
                 setpage(page == state.products.length / 6 ? 1 : page + 1)

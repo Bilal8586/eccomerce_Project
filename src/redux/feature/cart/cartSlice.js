@@ -28,7 +28,7 @@ export const addItemsAsyn= createAsyncThunk(
         const {userId}=items
         const {title,price,images}=items.items
         const {productId} = items
-        console.log('productId',productId,items)
+        
         const response = await addItems({id,title,price,images,Quntity:1,userId,productId})
         return response.data
     }

@@ -1,15 +1,12 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addUserId,
   deleteAsyn,
-  fetchItemsAsyn,
   upDataItemAsyn,
 } from "@/redux/feature/cart/cartSlice";
 import Link from "next/link";
 import { useState } from "react";
-import { fetchCartItems } from "@/redux/feature/cart/cartApi";
-import { BsFillArrowRightCircleFill,BsFillArrowLeftCircleFill } from "react-icons/bs";
+import {  BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill } from "react-icons/bs";
 
 const product = () => {
   const data = useSelector((state) => state.item);
@@ -80,7 +77,7 @@ const product = () => {
           onClick={() => setpage(page == 1 ? 1 : page - 1)}
           className=" border-2"
         >
-       <BsFillArrowLeftCircleFill />
+       <BsFillArrowLeftSquareFill />
         </button>
 
         {data.items?.length > 0 &&
@@ -109,7 +106,7 @@ const product = () => {
         <button
           onClick={() => setpage(page >= userCart.length / 6 ? 1 : page + 1)}
           className=" border-2">
-          <BsFillArrowRightCircleFill />
+          <BsFillArrowRightSquareFill />
          </button>
       </div>
     </div>
