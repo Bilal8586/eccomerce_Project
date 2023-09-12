@@ -1,7 +1,6 @@
 "use client"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addItems, deletItems, fetchCartItems, upDataItems } from "./cartApi";
-import { useSession } from "next-auth/react";
 
 const initialState={
     items:[],
