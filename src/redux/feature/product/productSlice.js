@@ -4,7 +4,8 @@ import { fetchProdut } from "@/redux/feature/product/productApi";
 
 const initialState ={
     products:[],
-    isLoding:true
+    isLoding:true,
+    page:1
 }
 
  export const fetchDataAsy = createAsyncThunk(
@@ -20,7 +21,11 @@ const productSlice = createSlice({
     name:'product',
     initialState,
     reducers:{
-
+            setPage :(state,action)=>{
+                    state.page = action.payload
+            },
+            
+            
     },
     extraReducers:(builder)=>{
         builder
@@ -38,3 +43,4 @@ const productSlice = createSlice({
 
 })
 export default productSlice.reducer
+export const {setPage} = productSlice.actions

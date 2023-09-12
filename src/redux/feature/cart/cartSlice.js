@@ -26,10 +26,11 @@ export const addItemsAsyn= createAsyncThunk(
     async(items)=>{
         const id=Math.random()+1
         const {userId}=items
-        const {title,price,images}=items.items
+        const {Quntity}=items
+        const {title,price,images,description}=items.items
         const {productId} = items
         
-        const response = await addItems({id,title,price,images,Quntity:1,userId,productId})
+        const response = await addItems({id,title,description,price,images,Quntity:Quntity,userId,productId})
         return response.data
     }
 )

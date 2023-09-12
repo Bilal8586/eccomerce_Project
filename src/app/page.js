@@ -18,14 +18,15 @@ const home = () => {
   const dispatch = useDispatch();
 
   const CheckUser = async () => {
-    if (loginCheck.message !== "User found") {
+    if (loginCheck.length !== undefined) {
       try {
         const response = await axios.get("/api/me");
         setCheck(response.data);
       } catch (error) {
-        console.log("getUser Data filed", error);
+        console.log("getUser Data filed");
       }
     }
+  
 
     if (status == "authenticated") {
       dispatch(addUserStatus("authenticated"));

@@ -31,7 +31,6 @@ const singupPage = () => {
     } else {
       try {
         const reponse = await axios.post("/api/signup", user);
-        console.log(reponse.data);
         toast.success('Signup Successful')
         route.push("/login");
       } catch (error) {
@@ -44,9 +43,9 @@ const singupPage = () => {
 
   return (
     <div className="flex justify-center items-center w-full h-[100vh]">
-      <div className="w-[600px] h-[800px] bg-slate-200 shadow-2xl gap-2 flex flex-col rounded-3xl justify-center items-center">
+      <div className="md:w-[600px] w-[370px] h-[800px] bg-slate-200 shadow-2xl gap-2 flex flex-col rounded-3xl justify-center items-center">
       <button
-          className="w-[400px] flex items-center justify-center gap-3 mb-24 h-[55px] shadow-2xl border-[1px] text-[26px] border-white bg-white hover:bg-white rounded-3xl"
+          className="md:w-[400px] w-[300px]  flex items-center justify-center gap-3 mb-24 h-[55px] shadow-2xl border-[1px] text-[26px] border-white bg-white hover:bg-white rounded-3xl"
           onClick={OnGooleSignup}
         >
          <span><FcGoogle /> </span> Sign up with Google
@@ -58,7 +57,7 @@ const singupPage = () => {
           Username
         </label>
         <input
-          className=" font-medium  border-black  w-[400px] rounded-3xl
+          className=" font-medium  border-black  md:w-[400px] w-[300px] rounded-3xl
          p-4 outline-0 focus-within:outline-blue-400"
           type="text"
           required
@@ -70,7 +69,7 @@ const singupPage = () => {
           Email
         </label>
         <input
-          className=" font-medium  border-black  w-[400px] rounded-3xl
+          className=" font-medium  border-black  md:w-[400px] w-[300px]  rounded-3xl
            p-4 outline-0 focus-within:outline-blue-400"
           type="email"
           required
@@ -83,7 +82,7 @@ const singupPage = () => {
           Password
         </label>
         <input
-          className=" font-medium  border-black  w-[400px] rounded-3xl
+          className=" font-medium  border-black  md:w-[400px] w-[300px]  rounded-3xl
            p-4 outline-0 focus-within:outline-blue-400"
           type="password"
           required

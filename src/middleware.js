@@ -15,6 +15,7 @@ export function middleware(request) {
   }
 
   if (!isgooletoken && !token && isLogin) {
+    console.log('middelware problem')
     return NextResponse.redirect(new URL("/login", request.nextUrl));
   }
 }

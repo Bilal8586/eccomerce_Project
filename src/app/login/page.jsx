@@ -20,7 +20,6 @@ const loginPage = () => {
     e.preventDefault() 
     try {
         const response = await axios.post('/api/login',user)
-        console.log(response.data)
         toast.success('Login successful')
         route.push('/')
     } catch (error) {
@@ -30,12 +29,12 @@ const loginPage = () => {
     }
   }
   return (
-       <div className="flex justify-center items-center w-full h-[100vh]">
-         <div className="w-[600px] h-[500px] bg-slate-200 shadow-2xl gap-2 flex flex-col rounded-3xl justify-center items-center">
+       <div className="  flex justify-center items-center w-full h-[100vh]">
+         <div className="md:w-[600px] h-[500px] w-[370px] bg-slate-200 shadow-2xl gap-2 flex flex-col rounded-3xl justify-center items-center">
          <button
-          className="w-[400px] flex items-center justify-center gap-3  h-[55px] shadow-2xl border-[1px] text-[26px] border-white bg-white hover:bg-white rounded-3xl"
-          onClick={()=>{
-            signIn('google')
+          className="md:w-[400px] w-[300px] flex items-center justify-center gap-3  h-[55px] shadow-2xl border-[1px] text-[26px] border-white bg-white hover:bg-white rounded-3xl"
+          onClick={ async ()=>{
+            await signIn('google')
             toast.success('Login successfull')
             route.push('/')
           }}
@@ -46,7 +45,7 @@ const loginPage = () => {
            <form onSubmit={onLogin} className="flex flex-col gap-2 items-center">
             <label htmlFor="email" className=" text-3xl">Email</label>
             <input
-                className=" font-medium  border-black  w-[400px] rounded-3xl
+                className=" font-medium  border-black  md:w-[400px] w-[300px] rounded-3xl
                             p-4 outline-0 focus-within:outline-blue-400"
                 type="email"
                 required
@@ -57,7 +56,7 @@ const loginPage = () => {
 
             <label htmlFor="password" className="text-3xl">Password</label>
             <input
-               className=" font-medium border-black  w-[400px] rounded-3xl
+               className=" font-medium border-black  md:w-[400px] w-[300px]  rounded-3xl
                p-4 outline-0 focus-within:outline-blue-400"
                 required
                 type="password"
